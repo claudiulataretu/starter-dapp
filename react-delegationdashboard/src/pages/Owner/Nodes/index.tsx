@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useContext } from 'context';
-import { NodeType } from 'helpers/types';
 import NodeRow from './NodeRow';
 import {
   getAllNodesStatus,
@@ -9,23 +8,22 @@ import {
   getQueueIndex,
 } from './helpers/keysFunctions';
 import AddNodeAction from './AddNodeAction';
+import { NodeType } from './helpers/nodeType';
 
 const Nodes = () => {
-  const { dapp, delegationContract, auctionContract, stakingContract } = useContext();
+  const { dapp, delegationContract } = useContext();
   const [keys, setKeys] = useState(new Array<NodeType>());
   const queued: any = [];
 
   const setQueuedKeys = async (queued: any, adaptedNodesStatus: NodeType[]) => {
     if (queued.length) {
       const results = await Promise.all([
-        getQueueSize(dapp, stakingContract),
-        ...queued.map((blsKey: any) =>
-          getQueueIndex(blsKey, dapp, stakingContract, auctionContract)
-        ),
+        getQueueSize(dapp),
+        ...queued.map((blsKey: any) => getQueueIndex(blsKey, dapp)),
       ]);
 
       let queueSize: any;
-      results.forEach(([result], index) => {
+      results.forEach((result, index) => {
         if (index === 0) {
           queueSize = result;
         } else {
@@ -43,7 +41,7 @@ const Nodes = () => {
   const getDiplayNodes = () => {
     Promise.all([
       getAllNodesStatus(dapp, delegationContract),
-      getBlsKeysStatus(dapp, queued, delegationContract, auctionContract),
+      getBlsKeysStatus(dapp, queued, delegationContract),
     ])
       .then(async ([nodesStatus, blsKeys]) => {
         const adaptedNodesStatus = nodesStatus.map(item => {

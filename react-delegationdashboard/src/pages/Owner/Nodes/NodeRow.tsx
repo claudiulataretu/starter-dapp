@@ -4,24 +4,25 @@ import { faCaretDown, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import moment from 'moment';
 import React from 'react';
-import { Nav, NavDropdown, Dropdown } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 import { useContext } from 'context';
 import { nodeActions } from './helpers/nodeTypes';
 import { nodeTransactions } from './helpers/stakeHooks';
-import { NodeType } from 'helpers/types';
+import { stakingContract } from 'config';
+import { NodeType } from './helpers/nodeType';
 
-type ActionType = 'unStake' | 'unJail' | 'unBond' | 'reStake' | 'stake';
+type ActionType = 'unStake' | 'unJail' | 'unBond' | 'reStake' | 'stake' | 'remove';
 
 const allowedActions: { [key: string]: ActionType[] } = {
   staked: ['unStake'],
   jailed: ['unJail'],
   unStaked: ['unBond', 'reStake'],
   queued: ['unStake'],
-  notStaked: ['stake'],
+  notStaked: ['stake', 'remove'],
 };
 
-const NodeRow = ({ blsKey: key, index }: { blsKey: NodeType; index: number }) => {
-  const { explorerAddress, dapp, stakingContract, delegationContract } = useContext();
+const NodeRow = ({ blsKey: key }: { blsKey: NodeType; index: number }) => {
+  const { explorerAddress, dapp, delegationContract } = useContext();
   const ref = React.useRef(null);
 
   const [remaining, setRemaining] = React.useState(0);

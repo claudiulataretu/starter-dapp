@@ -1,21 +1,17 @@
 import { IDappProvider, ProxyProvider, ApiProvider, WalletProvider } from '@elrondnetwork/erdjs';
-import { ContractOverview } from 'helpers/types';
-import { denomination, decimals, networks, NetworkType } from '../config';
+import { AgencyMetadata, ContractOverview } from 'helpers/contractDataDefinitions';
+import { denomination, decimals, network, NetworkType } from '../config';
 import { getItem } from '../storage/session';
 
 export const defaultNetwork: NetworkType = {
-  default: false,
   id: 'not-configured',
   name: 'NOT CONFIGURED',
   egldLabel: '',
-  theme: '',
   walletAddress: '',
   apiAddress: '',
   gatewayAddress: '',
   explorerAddress: '',
   delegationContract: '',
-  auctionContract: '',
-  stakingContract: '',
 };
 
 export interface DappState {
@@ -36,15 +32,22 @@ export interface StateType {
   account: AccountType;
   explorerAddress: string;
   delegationContract?: string;
-  auctionContract?: string;
-  stakingContract?: string;
   totalActiveStake: string;
   numberOfActiveNodes: string;
+  numUsers: number;
+  aprPercentage: string;
   contractOverview: ContractOverview;
+  agencyMetaData: AgencyMetadata;
 }
 export const emptyAccount: AccountType = {
   balance: '...',
   nonce: 0,
+};
+
+export const emptyAgencyMetaData: AgencyMetadata = {
+  name: '',
+  website: '',
+  keybase: '',
 };
 
 export const emptyContractOverview: ContractOverview = {
@@ -55,12 +58,13 @@ export const emptyContractOverview: ContractOverview = {
   automaticActivation: 'false',
   withDelegationCap: false,
   changeableServiceFee: false,
+  reDelegationCap: 'false',
   createdNounce: false,
   unBondPeriod: 0,
 };
 
-export const initialState = (optionalConfig?: NetworkType[]) => {
-  const sessionNetwork = networks.filter(network => network.default).pop() || defaultNetwork;
+export const initialState = () => {
+  const sessionNetwork = network || defaultNetwork;
   return {
     denomination: denomination,
     decimals: decimals,
@@ -87,11 +91,12 @@ export const initialState = (optionalConfig?: NetworkType[]) => {
     egldLabel: sessionNetwork?.egldLabel,
     explorerAddress: sessionNetwork.explorerAddress || 'https://explorer.elrond.com',
     delegationContract: sessionNetwork.delegationContract,
-    auctionContract: sessionNetwork.auctionContract,
-    stakingContract: sessionNetwork.stakingContract,
     contractOverview: emptyContractOverview,
+    agencyMetaData: emptyAgencyMetaData,
     numberOfActiveNodes: '...',
+    numUsers: 0,
     totalActiveStake: '...',
+    aprPercentage: '...',
   };
 };
 

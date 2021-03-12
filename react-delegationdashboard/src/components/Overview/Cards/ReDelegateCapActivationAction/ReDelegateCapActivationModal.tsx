@@ -3,7 +3,7 @@ import { Modal } from 'react-bootstrap';
 import ViewStatAction from 'components/ViewStatAction';
 import { useDelegation } from 'helpers';
 
-export interface AutomaticActivationModalType {
+export interface ReDelegateCapActivationModalType {
   show: boolean;
   title: string;
   description: string;
@@ -11,17 +11,17 @@ export interface AutomaticActivationModalType {
   handleClose: () => void;
 }
 
-const AutomaticActivationModal = ({
+const ReDelegateCapActivationModal = ({
   show,
   title,
   description,
   value,
   handleClose,
-}: AutomaticActivationModalType) => {
+}: ReDelegateCapActivationModalType) => {
   const { delegation } = useDelegation();
-  const handleAutomaticActivation = () => {
+  const handleReDelegationCapActivation = () => {
     let activation = Buffer.from(value === 'true' ? 'false' : 'true').toString('hex');
-    delegation.sendTransaction('0', 'setAutomaticActivation', activation).then();
+    delegation.sendTransaction('0', 'setReDelegateCapActivation', activation).then();
   };
 
   return (
@@ -36,7 +36,7 @@ const AutomaticActivationModal = ({
           <div className="d-flex justify-content-center align-items-center flex-wrap">
             <ViewStatAction
               actionTitle={`Turn ${value === 'true' ? 'OFF' : 'ON'}`}
-              handleContinue={handleAutomaticActivation}
+              handleContinue={handleReDelegationCapActivation}
               color="primary"
             />
             <button id="closeButton" className="btn btn-link mx-2" onClick={handleClose}>
@@ -49,4 +49,4 @@ const AutomaticActivationModal = ({
   );
 };
 
-export default AutomaticActivationModal;
+export default ReDelegateCapActivationModal;

@@ -10,8 +10,11 @@ export type ActionType =
   | { type: 'setProvider'; provider: StateType['dapp']['provider'] }
   | { type: 'setBalance'; balance: StateType['account']['balance'] }
   | { type: 'setContractOverview'; contractOverview: StateType['contractOverview'] }
+  | { type: 'setAgencyMetaData'; agencyMetaData: StateType['agencyMetaData'] }
   | { type: 'setNumberOfActiveNodes'; numberOfActiveNodes: StateType['numberOfActiveNodes'] }
-  | { type: 'setTotalActiveStake'; totalActiveStake: StateType['totalActiveStake'] };
+  | { type: 'setNumUsers'; numUsers: StateType['numUsers'] }
+  | { type: 'setTotalActiveStake'; totalActiveStake: StateType['totalActiveStake'] }
+  | { type: 'setAprPercentage'; aprPercentage: StateType['aprPercentage'] };
 
 export function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
@@ -65,6 +68,14 @@ export function reducer(state: StateType, action: ActionType): StateType {
       };
     }
 
+    case 'setAgencyMetaData': {
+      const { agencyMetaData } = action;
+      return {
+        ...state,
+        agencyMetaData,
+      };
+    }
+
     case 'setNumberOfActiveNodes': {
       const { numberOfActiveNodes } = action;
       return {
@@ -73,11 +84,27 @@ export function reducer(state: StateType, action: ActionType): StateType {
       };
     }
 
+    case 'setNumUsers': {
+      const { numUsers } = action;
+      return {
+        ...state,
+        numUsers,
+      };
+    }
+
     case 'setTotalActiveStake': {
       const { totalActiveStake } = action;
       return {
         ...state,
         totalActiveStake,
+      };
+    }
+
+    case 'setAprPercentage': {
+      const { aprPercentage } = action;
+      return {
+        ...state,
+        aprPercentage,
       };
     }
 
