@@ -3,6 +3,7 @@ import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
 import withPageTitle from './components/PageTitle';
 import Owner from 'pages/Owner';
+import LandingPage from 'pages/LandingPage';
 
 interface RouteType {
   path: string;
@@ -15,6 +16,12 @@ const routes: RouteType[] = [
   {
     path: '/',
     page: 'home',
+    title: '',
+    component: LandingPage,
+  },
+  {
+    path: '/stake',
+    page: 'stake',
     title: '',
     component: Home,
   },
