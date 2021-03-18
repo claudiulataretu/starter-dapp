@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import withPageTitle from './components/PageTitle';
 import Owner from 'pages/Owner';
 import Ledger from 'pages/Ledger';
+import LandingPage from 'pages/LandingPage';
 
 interface RouteType {
   path: string;
@@ -16,6 +17,12 @@ const routes: RouteType[] = [
   {
     path: '/',
     page: 'home',
+    title: '',
+    component: LandingPage,
+  },
+  {
+    path: '/stake',
+    page: 'stake',
     title: '',
     component: Home,
   },
