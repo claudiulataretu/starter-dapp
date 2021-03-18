@@ -30,3 +30,9 @@ export interface ActionModalType {
   handleClose: () => void;
   handleContinue: (value: string) => void;
 }
+
+export interface ButtonDetails {
+  title: string;
+  link?: string;
+  color?: string;
+}
