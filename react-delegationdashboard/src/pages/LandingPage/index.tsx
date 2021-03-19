@@ -11,6 +11,7 @@ import ProductContent from '../../content/ProductContent.json';
 import ContactContent from '../../content/ContactContent.json';
 import Header from 'components/LandingPage/Header';
 import Footer from 'components/LandingPage/Footer';
+import ApyCalculator from 'components/LandingPage/ApyCalculator';
 
 const LeftContentBlock = lazy(() => import('../../components/LandingPage/ContentBlock/LeftContentBlock'));
 const RightContentBlock = lazy(() => import('../../components/LandingPage/ContentBlock/RightContentBlock'));
@@ -26,6 +27,7 @@ const LandingPage = () => {
       <Header />
       <Container>
       <ScrollToTop />
+      <ApyCalculator />
       <RightContentBlock
         title={IntroContent.title}
         content={IntroContent.text}
