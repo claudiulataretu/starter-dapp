@@ -49,7 +49,7 @@ export const Extra = styled.section`
   padding-left: 25px;
   margin-right: auto;
   margin-left: auto;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
 `;
 
 export const LogoContainer = styled.div`
@@ -118,8 +118,8 @@ export const FooterContainer = styled.div`
   justify-content: space-between;
 
   @media screen and (max-width: 414px) {
-    padding: 2rem 0;
-    padding-right: 50%;
+    padding: 1rem 0;
+    padding-right: 25%;
   }
 
   div {
