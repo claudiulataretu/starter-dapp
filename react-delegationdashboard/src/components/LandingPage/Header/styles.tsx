@@ -9,6 +9,7 @@ export const Header = styled.header`
 export const LogoContainer = styled(Link)`
   display: flex;
   padding-top: 1rem;
+  padding-right: 1rem;
 `;
 
 export const Container = styled.div`
@@ -104,7 +105,7 @@ export const Span = styled.span`
 `;
 
 export const Large = styled(Link)`
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: rgba(2, 7, 62, 0.8);
   padding-top: 16px;
   cursor: pointer;

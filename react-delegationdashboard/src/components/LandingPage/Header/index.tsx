@@ -56,11 +56,9 @@ const Header = () => {
       <S.Container>
         <Row align='middle' justify='start' gutter={20} style={{display:'flex'}}>
           <S.LogoContainer to="/" aria-label="homepage">
-            <SvgIcon src="logo.svg" />
+            <SvgIcon src="mgstaking v1.png" width='230px' height='103px'/>
           </S.LogoContainer>
-          <S.Large to="/">
-                  {'MGStaking'}
-          </S.Large>
+          {/* <S.Large to="/">{'MGStaking'}</S.Large> */}
           {/* <S.NotHidden>
             <MenuItem />
           </S.NotHidden>
