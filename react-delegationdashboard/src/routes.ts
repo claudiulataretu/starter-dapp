@@ -29,7 +29,7 @@ const routes: RouteType[] = [
   {
     path: '/dashboard',
     page: 'dashboard',
-    title: 'Dashboard',
+    title: 'MGStaking | Dashboard',
     component: Dashboard,
   },
   {
@@ -41,14 +41,14 @@ const routes: RouteType[] = [
   {
     path: '/owner',
     page: 'owner',
-    title: 'Owner',
+    title: 'MGStaking | Owner',
     component: Owner,
   },
 ];
 
 const wrappedRoutes = () => {
   return routes.map(route => {
-    const title = route.title ? `${route.title} • Delegation Manager` : 'Delegation Manager';
+    const title = route.title ? `${route.title}` : 'MGStaking';
     return {
       path: route.path,
       page: route.page,
