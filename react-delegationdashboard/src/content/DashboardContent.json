@@ -1,0 +1,40 @@
+{
+  "title": "Manage your eGLD Stake",
+  "text": "This template is ready to use, so you don't need to change anything at a component level, unless you want to customize the default styling.",
+  "button": [
+    {
+      "title": "Connect To Dashboard",
+      "link": "/stake"
+    }
+  ],
+  "sections": [
+    "With our dedicated dashboard, tracking your rewards is a breeze!",
+    "You can easily connect using your web wallet or Ledger device."
+  ],
+  "bullets": [
+    {
+      "content": "Annual Percentage Yield. Paid daily at 14:23 UTC",
+      "icon": "checkbox.svg"
+    },
+    {
+      "content": "Competitive APY: 20.74%",
+      "icon": "checkbox.svg"
+    },
+    {
+      "content": "Stake your EGLD minimum 1EGLD",
+      "icon": "checkbox.svg"
+    },
+    {
+      "content": "Claim your rewards",
+      "icon": "checkbox.svg"
+    },
+    {
+      "content": "Compound your rewards - no minimum value",
+      "icon": "checkbox.svg"
+    },
+    {
+      "content": "10 days withdraw period after request",
+      "icon": "checkbox.svg"
+    }
+  ]
+}
