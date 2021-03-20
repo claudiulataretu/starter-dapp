@@ -1,5 +1,9 @@
 {
-    "title": "Introduce Your Product Quickly & Effectively",
-    "text": "Landy comes with multi-lingual support, all of the content is stored in the JSON files, so that you can manage the texts without having any prior knowledge in developing web applications using React.js."
+    "title": "About us",
+    "sections": [
+      "We are a highly motivated, technology focused team with more than 11 years experience in the IT Industry, focusing right now on the growth of the Elrond Network ecosystem and to provide staking services for the most advanced blockchain protocol in the world. ",
+      "Based in Bucharest, Romania, our company offers a wide range of IT Services to international customers: Blockchain Staking Services on the Elrond Network, Software Development and Business Analysis in the blockchain technology.",
+      "Take advantage of our experience and benefit of unmatched uptime, high performance and 24/7 support when it comes to staking eGLD on the Elrond Network."
+    ]
   }
   
