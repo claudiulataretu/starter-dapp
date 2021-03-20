@@ -36,3 +36,8 @@ export interface ButtonDetails {
   link?: string;
   color?: string;
 }
+
+export interface SectionDetails {
+  content: string;
+  icon: string;
+}
