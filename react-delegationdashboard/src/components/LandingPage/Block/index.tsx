@@ -5,9 +5,10 @@ import * as S from './styles';
 interface BlockType {
   title?: string;
   content?: string;
+  padding?: boolean;
 }
 
-const Block = ({ title, content }: BlockType) => {
+const Block = ({ title, content, padding }: BlockType) => {
   return (
     <S.Container>
       <Fade direction='left'>
