@@ -1,0 +1,4 @@
+{
+  "title": "Our Infrastructure",
+  "text": "Secure servers deployed in a decentralized infrastructure using full bare-metal dedicated resources. Our nodes have redundancy set directly in the Elrond procol level (in less than 90s another backup node is up and running if the main node fails)."
+}
