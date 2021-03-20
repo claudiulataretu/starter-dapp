@@ -5,10 +5,8 @@ import GlobalStyles from '../../globalStyles';
 
 import IntroContent from '../../content/IntroContent.json';
 import MiddleBlockContent from '../../content/MiddleBlockContent.json';
-import AboutContent from '../../content/AboutContent.json';
-import MissionContent from '../../content/MissionContent.json';
-import ProductContent from '../../content/ProductContent.json';
-import ContactContent from '../../content/ContactContent.json';
+import DashboardContent from '../../content/DashboardContent.json';
+import InfrastructureContent from '../../content/InfrastructureContent.json';
 import Header from 'components/LandingPage/Header';
 import Footer from 'components/LandingPage/Footer';
 import ApyCalculator from 'components/LandingPage/ApyCalculator';
@@ -27,38 +25,33 @@ const LandingPage = () => {
       <Header />
       <Container>
       <ScrollToTop />
-      <ApyCalculator />
       <RightContentBlock
         title={IntroContent.title}
         content={IntroContent.text}
         button={IntroContent.button}
-        icon="developer.svg"
+        icon="startup.svg"
         id="intro"
       />
       <MiddleBlock
         title={MiddleBlockContent.title}
-        content={MiddleBlockContent.text}
-      />
-      <LeftContentBlock
-        title={AboutContent.title}
-        content={AboutContent.text}
-        section={AboutContent.section}
-        icon="graphs.svg"
+        content={MiddleBlockContent.sections}
         id="about"
       />
-      <RightContentBlock
-        title={MissionContent.title}
-        content={MissionContent.text}
-        icon="product-launch.svg"
-        id="mission"
-      />
-
       <LeftContentBlock
-        title={ProductContent.title}
-        content={ProductContent.text}
-        icon="waving.svg"
-        id="product"
+        title={DashboardContent.title}
+        content={DashboardContent.sections}
+        section={DashboardContent.bullets}
+        button={DashboardContent.button}
+        icon="preview.png"
+        id="dashboard"
       />
+      <RightContentBlock
+        title={InfrastructureContent.title}
+        content={InfrastructureContent.text}
+        icon="web-hosting.svg"
+        id="infrastructure"
+      />
+      <ApyCalculator />
     </Container>
     <Footer />
     </Suspense>
