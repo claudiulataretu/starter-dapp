@@ -30,7 +30,6 @@ const Home = () => {
           <div className="card my-spacer text-center">
             <div className="card-body p-spacer mx-lg-spacer">
               <Logo className="logo mb-spacer" />
-              <h4 className="mb-spacer">Elrond Delegation Manager</h4>
               <p className="lead mb-spacer">
                 Delegate Elrond ({egldLabel}) and earn up to 25% APY!
               </p>
