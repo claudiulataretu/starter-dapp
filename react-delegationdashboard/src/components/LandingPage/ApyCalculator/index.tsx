@@ -1,5 +1,6 @@
 import { useState, Fragment, lazy, useEffect } from 'react';
 import { Row, Col } from 'antd';
+import { Slide } from 'react-awesome-reveal';
 
 import { Form, InputNumber, Card, Slider } from 'antd';
 
@@ -85,53 +86,55 @@ const ApyCalculator = () => {
     <S.Container>
       <Row justify='center' align='middle' style={{ display: 'flex', width: '100%' }}>
         <Col lg={18} md={24} sm={24} xs={24}>
+          <Slide direction='down'>
           <h6 style={{marginBottom: 32}}>{'APY Calculator'}</h6>
-
           {/* Network Total Stake slider */}
-          <Row justify='center' style={{ display: 'flex' }}>
-            <Col lg={6} md={24} sm={24} xs={24}>
-              <p>Network Total Stake</p>
-            </Col>
-            <Col lg={12} md={24} sm={24} xs={24}>
-              <Slider
-                step={500000}
-                value={netTotalStake}
-                min={8000000}
-                max={13000000}
-                tipFormatter={(value?: number) => `${(value || 8000000).toLocaleString('en-US')}`}
-                onChange={(value: number) => setNetTotalStake(value)} />
-            </Col>
-            <Col lg={6} md={24} sm={24} xs={24}>
-              <p>{`${netTotalStake.toLocaleString('en-US')} ${constants.egldName}`}</p>
-            </Col>
-          </Row>
-
+            <Row justify='center' style={{ display: 'flex' }}>
+              <Col lg={6} md={24} sm={24} xs={24}>
+                <p>Network Total Stake</p>
+              </Col>
+              <Col lg={12} md={24} sm={24} xs={24}>
+                <Slider
+                  step={500000}
+                  value={netTotalStake}
+                  min={8000000}
+                  max={13000000}
+                  tipFormatter={(value?: number) => `${(value || 8000000).toLocaleString('en-US')}`}
+                  onChange={(value: number) => setNetTotalStake(value)} />
+              </Col>
+              <Col lg={6} md={24} sm={24} xs={24}>
+                <p>{`${netTotalStake.toLocaleString('en-US')} ${constants.egldName}`}</p>
+              </Col>
+            </Row>
+          </Slide>
+          <Slide direction='down'>
            {/* Your Delegation slider */}
-           <Row justify='center' style={{ display: 'flex' }}>
-            <Col lg={6} md={24} sm={24} xs={24}>
-              <p>Your Delegation</p>
-            </Col>
-            <Col lg={12} md={24} sm={24} xs={24}>
-              <Slider
-                min={1}
-                max={10000}
-                step={10}
-                value={userStake}
-                tipFormatter={(value?: number) => `${(value || 8000000).toLocaleString('en-US')}`}
-                onChange={(value: number) => setUserStake(value)} />
-            </Col>
-            <Col lg={6} md={24} sm={24} xs={24}>
-              <InputNumber
-                value={userStake}
-                size='large'
-                style={{width: '60%', minWidth: '100px'}}
-                min={0}
-                formatter={value => `${(value || 1000).toLocaleString('en-US')} ${constants.egldName}`}
-                parser={value => parseInt((value || '0,0 eGLD').replace(',', '').replace(' eGLD', ''))}
-                onChange={(value: number) => setUserStake(value) } />
-            </Col>
-          </Row>
-
+            <Row justify='center' style={{ display: 'flex' }}>
+              <Col lg={6} md={24} sm={24} xs={24}>
+                <p>Your Delegation</p>
+              </Col>
+              <Col lg={12} md={24} sm={24} xs={24}>
+                <Slider
+                  min={1}
+                  max={10000}
+                  step={10}
+                  value={userStake}
+                  tipFormatter={(value?: number) => `${(value || 8000000).toLocaleString('en-US')}`}
+                  onChange={(value: number) => setUserStake(value)} />
+              </Col>
+              <Col lg={6} md={24} sm={24} xs={24}>
+                <InputNumber
+                  value={userStake}
+                  size='large'
+                  style={{width: '60%', minWidth: '100px'}}
+                  min={0}
+                  formatter={value => `${(value || 1000).toLocaleString('en-US')} ${constants.egldName}`}
+                  parser={value => parseInt((value || '0,0 eGLD').replace(',', '').replace(' eGLD', ''))}
+                  onChange={(value: number) => setUserStake(value) } />
+              </Col>
+            </Row>
+          </Slide>
+          <Slide direction='down'>
           <h6 style={{ marginTop: 32, marginBottom: 16, fontSize: '2rem' }}>{'Agency Variables'}</h6>
 
           {/* Agency Variables */}
@@ -171,7 +174,8 @@ const ApyCalculator = () => {
                 onChange={(value: number) => setAgencyFee(value) } />
             </Col>
           </Row>
-
+          </Slide>
+          <Slide direction='down'>
           <h6 style={{ marginTop: 32, marginBottom: 16, fontSize: '2rem' }}>{'Results'}</h6>
 
           <Row gutter={20} justify='center' align='middle' style={{ display: 'flex', marginBottom: 16 }}>
@@ -203,8 +207,16 @@ const ApyCalculator = () => {
               </Card>
             </Col>
           </Row>
-
-          <Button>{'Stake Now!'}</Button>
+          <Button
+            width='true'
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href='/stake';
+            }}
+          >
+            {'Stake Now'}
+          </Button>
+          </Slide>
         </Col>
       </Row>
     </S.Container>
