@@ -10,11 +10,12 @@ const Button = lazy(() => import('../../../common/Button'));
 interface MiddleBlockType {
   icon?: string;
   title?: string,
-  content?: string;
+  content?: string[];
   button?: ButtonDetails[];
+  id: string;
 }
 
-const MiddleBlock = ({ title, content, button }: MiddleBlockType) => {
+const MiddleBlock = ({ title, content, button, id }: MiddleBlockType) => {
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({
@@ -28,7 +29,16 @@ const MiddleBlock = ({ title, content, button }: MiddleBlockType) => {
           <S.ContentWrapper>
             <Col lg={24} md={24} sm={24} xs={24}>
               <h6>{title}</h6>
-              <S.Content>{content}</S.Content>
+              <S.Content>
+              {content &&
+                content.map((item, id) => {
+                  return (
+                    <p>
+                      {item}
+                    </p>
+                  );
+                })}
+              </S.Content>
               {button ? (
                 <Button
                   name='submit'
