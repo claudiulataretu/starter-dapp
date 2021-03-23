@@ -66,7 +66,7 @@ const ApyCalculator = () => {
       spTopupRewards = (agencyTopupStake / networkTopupStake) * networkTopupRewards;
     }
 
-    let spAPY = (365 * (spBaseRewards + spTopupRewards)) / spTotalStake;
+    let spAPY = ((365 * (spBaseRewards + spTopupRewards)) / spTotalStake) || 0;
     let delegatorApy = spAPY - (agencyFee / 100 * spAPY);
 
     let delegatorYearly = delegatorApy * userStake;
