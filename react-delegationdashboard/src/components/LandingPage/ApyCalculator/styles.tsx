@@ -20,3 +20,28 @@ export const TextWrapper = styled.div`
   border-radius: 3rem;
   max-width: 400px;
 `;
+
+export const SubTitle = styled.h6`
+  margin-top: 32px;
+  margin-bottom: 16px;
+  font-size: 2rem;
+  
+  @media only screen and (max-width: 414px) {
+    font-size: 1.625rem;
+  }
+`;
+
+export const ApyPeriodTitle = styled.h6`
+  margin: 0px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.6rem;
+  
+  @media only screen and (max-width: 414px) {
+    font-size: 1rem;
+  }
+`;
+
+export const NoMargin = styled.p`
+  margin: 0px;
+`;

@@ -1,6 +1,6 @@
 import { useState, Fragment, lazy, useEffect } from 'react';
 import { Row, Col } from 'antd';
-import { Slide } from 'react-awesome-reveal';
+import { Slide, Fade } from 'react-awesome-reveal';
 
 import { Form, InputNumber, Card, Slider } from 'antd';
 
@@ -84,11 +84,15 @@ const ApyCalculator = () => {
 
   return (
     <S.Container>
-      <Row justify='center' align='middle' style={{ display: 'flex', width: '100%' }}>
+      <Row gutter={[0, 20]} justify='center' align='middle' style={{ display: 'flex', width: '100%' }}>
         <Col lg={18} md={24} sm={24} xs={24}>
-          <Slide direction='down'>
-          <h6 style={{marginBottom: 32}}>{'APY Calculator'}</h6>
+          
+          <Fade direction='down'>
+            <h6 style={{marginBottom: 32}}>{'APY Calculator'}</h6>
+          </Fade>
+
           {/* Network Total Stake slider */}
+          <Slide direction='down'>
             <Row justify='center' style={{ display: 'flex' }}>
               <Col lg={6} md={24} sm={24} xs={24}>
                 <p>Network Total Stake</p>
@@ -107,8 +111,9 @@ const ApyCalculator = () => {
               </Col>
             </Row>
           </Slide>
+
+          {/* Your Delegation slider */}
           <Slide direction='down'>
-           {/* Your Delegation slider */}
             <Row justify='center' style={{ display: 'flex' }}>
               <Col lg={6} md={24} sm={24} xs={24}>
                 <p>Your Delegation</p>
@@ -134,88 +139,95 @@ const ApyCalculator = () => {
               </Col>
             </Row>
           </Slide>
-          <Slide direction='down'>
-          <h6 style={{ marginTop: 32, marginBottom: 16, fontSize: '2rem' }}>{'Agency Variables'}</h6>
 
           {/* Agency Variables */}
-          <Row justify='center' align='middle' style={{ display: 'flex', marginTop: '16px' }}>
-            <Col lg={4} md={12} sm={12} xs={12}>
-              <p style={{ margin: 0 }}>Base Stake (eGLD)</p>
-            </Col>
-            <Col lg={4} md={12} sm={12} xs={12}>
-              <InputNumber
-                value={agencyBaseStake}
-                size='large'
-                min={0}
-                onChange={(value: number) => setAgencyBaseStake(value) } />
-            </Col>
-
-            <Col lg={4} md={12} sm={12} xs={12}>
-              <p style={{ margin: 0 }}>TopUp (eGLD)</p>
-            </Col>
-            <Col lg={4} md={12} sm={12} xs={12}>
-              <InputNumber
-                value={agencyTopupStake}
-                size='large'
-                min={0}
-                onChange={(value: number) => setAgencyTopupStake(value) } />
-            </Col>
-
-            <Col lg={4} md={12} sm={12} xs={12}>
-              <p style={{ margin: 0 }}>Fee (%)</p>
-            </Col>
-            <Col lg={4} md={12} sm={12} xs={12}>
-              <InputNumber
-                value={agencyFee}
-                size='large'
-                min={0}
-                step={0.1}
-                precision={2}
-                onChange={(value: number) => setAgencyFee(value) } />
-            </Col>
-          </Row>
-          </Slide>
           <Slide direction='down'>
-          <h6 style={{ marginTop: 32, marginBottom: 16, fontSize: '2rem' }}>{'Results'}</h6>
+            <S.SubTitle>{'Agency Variables'}</S.SubTitle>
+            <Row gutter={[0, 20]} justify='center' align='middle' style={{ display: 'flex', marginTop: '16px' }}>
+              <Col lg={4} md={12} sm={12} xs={12}>
+                <p style={{ margin: 0 }}>Base Stake (eGLD)</p>
+              </Col>
+              <Col lg={4} md={12} sm={12} xs={12}>
+                <InputNumber
+                  value={agencyBaseStake}
+                  size='large'
+                  min={0}
+                  onChange={(value: number) => setAgencyBaseStake(value) } />
+              </Col>
 
-          <Row gutter={20} justify='center' align='middle' style={{ display: 'flex', marginBottom: 16 }}>
-            <Col lg={6} md={24} sm={24} xs={24}>
-              <Card title='APY' headStyle={{ fontSize: '1.8rem', fontWeight: 400, padding: '0' }} bodyStyle={{ padding: '16px', height: 86, alignItems: 'center' }}>
-                <h6 style={{ fontSize: '2em', fontWeight: 500, margin: '0' }}>{(delegatorApy * 100).toFixed(2)}%</h6>
-              </Card>
+              <Col lg={4} md={12} sm={12} xs={12}>
+                <p style={{ margin: 0 }}>TopUp (eGLD)</p>
+              </Col>
+              <Col lg={4} md={12} sm={12} xs={12}>
+                <InputNumber
+                  value={agencyTopupStake}
+                  size='large'
+                  min={0}
+                  onChange={(value: number) => setAgencyTopupStake(value) } />
+              </Col>
+
+              <Col lg={4} md={12} sm={12} xs={12}>
+                <p style={{ margin: 0 }}>Fee (%)</p>
+              </Col>
+              <Col lg={4} md={12} sm={12} xs={12}>
+                <InputNumber
+                  value={agencyFee}
+                  size='large'
+                  min={0}
+                  step={0.1}
+                  precision={2}
+                  onChange={(value: number) => setAgencyFee(value) } />
+              </Col>
+            </Row>
+          </Slide>
+
+          <Slide direction='down'>
+            <S.SubTitle>{'Results'}</S.SubTitle>
+          </Slide>
+          <Row gutter={[20, 20]} justify='center' align='middle' style={{ display: 'flex', marginBottom: 16 }}>
+            <Col lg={6} md={24} sm={24} xs={18}>
+              <Fade>
+                <Card title='APY' headStyle={{ fontSize: '1.8rem', fontWeight: 400, padding: '0' }} bodyStyle={{ padding: '16px', height: 86, alignItems: 'center' }}>
+                  <h6 style={{ fontSize: '2em', fontWeight: 500, margin: '0' }}>{(delegatorApy * 100).toFixed(2)}%</h6>
+                </Card>
+              </Fade>
             </Col>
-            <Col lg={12} md={24} sm={24}>
-              <Card title='eGLD Rewards' headStyle={{ fontSize: '1.8rem', fontWeight: 400, padding: 0 }} bodyStyle={{ paddingRight: 0, paddingLeft: 0, paddingTop: 16, paddingBottom: 16, height: 86 }}>
-                <Row justify='space-around' align='middle' style={{ display: 'flex' }}>
-                  <Col span={4}>
-                    <Row justify='center'><h6 style={{ fontSize: '1.1rem', fontWeight: 500, lineHeight: '1.6rem', margin: 0 }}>Year</h6></Row>
-                    <Row justify='center'><p style={{ margin: 0 }}>{delegatorYearly.toFixed(2)}</p></Row>
-                  </Col>
-                  <Col span={4}>
-                    <Row justify='center'><h6 style={{ fontSize: '1.1rem', fontWeight: 500, lineHeight: '1.6rem', margin: 0 }}>Month</h6></Row>
-                    <Row justify='center'><p style={{ margin: 0 }}>{delegatorMonthly.toFixed(3)}</p></Row>
-                  </Col>
-                  <Col span={4}>
-                    <Row justify='center'><h6 style={{ fontSize: '1.1rem', fontWeight: 500, lineHeight: '1.6rem', margin: 0 }}>Week</h6></Row>
-                    <Row justify='center'><p style={{ margin: 0 }}>{delegatorWeekly.toFixed(4)}</p></Row>
-                  </Col>
-                  <Col span={4}>
-                    <Row justify='center'><h6 style={{ fontSize: '1.1rem', fontWeight: 500, lineHeight: '1.6rem', margin: 0 }}>Day</h6></Row>
-                    <Row justify='center'><p style={{ margin: 0 }}>{delegatorDaily.toFixed(4)}</p></Row>
-                  </Col>
-                </Row>
-              </Card>
+            <Col lg={12} md={24} sm={24} xs={24}>
+              <Fade>
+                <Card title='eGLD Rewards' headStyle={{ fontSize: '1.8rem', fontWeight: 400, padding: 0 }} bodyStyle={{ paddingRight: 0, paddingLeft: 0, paddingTop: 16, paddingBottom: 16, height: 86 }}>
+                  <Row justify='space-around' align='middle' style={{ display: 'flex' }}>
+                    <Col span={4}>
+                      <Row justify='center'><S.ApyPeriodTitle>Year</S.ApyPeriodTitle></Row>
+                      <Row justify='center'><S.NoMargin>{delegatorYearly.toFixed(2)}</S.NoMargin></Row>
+                    </Col>
+                    <Col span={4}>
+                      <Row justify='center'><S.ApyPeriodTitle>Month</S.ApyPeriodTitle></Row>
+                      <Row justify='center'><S.NoMargin>{delegatorMonthly.toFixed(3)}</S.NoMargin></Row>
+                    </Col>
+                    <Col span={4}>
+                      <Row justify='center'><S.ApyPeriodTitle>Week</S.ApyPeriodTitle></Row>
+                      <Row justify='center'><S.NoMargin>{delegatorWeekly.toFixed(4)}</S.NoMargin></Row>
+                    </Col>
+                    <Col span={4}>
+                      <Row justify='center'><S.ApyPeriodTitle>Day</S.ApyPeriodTitle></Row>
+                      <Row justify='center'><S.NoMargin>{delegatorDaily.toFixed(4)}</S.NoMargin></Row>
+                    </Col>
+                  </Row>
+                </Card>
+              </Fade>
             </Col>
           </Row>
-          <Button
-            width='true'
-            onClick={(e) => {
-              e.preventDefault();
-              window.location.href='/stake';
-            }}
-          >
-            {'Stake Now'}
-          </Button>
+
+          <Slide direction='down'>
+            <Button
+              width='true'
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.href='/stake';
+              }}
+            >
+              {'Stake Now'}
+            </Button>
           </Slide>
         </Col>
       </Row>
@@ -224,83 +236,3 @@ const ApyCalculator = () => {
 };
 
 export default ApyCalculator;
-
-
-{/*
-
-<div class="form-group row text-center">
-  <label for="netTotalStake" class="col-md-3 col-form-label var-label">Network Total Stake:</label>
-  <div class="col-md-6">
-    <input type="number" class="mt-2" id="netTotalStake">
-  </div>
-  <div class="col-md-3 var-value col-form-label text-left"><span id="netTotalStakeVal"></span></div>
-</div>
-<div class="form-group row text-center">
-  <label for="userStake" class="col-md-3 col-form-label var-label">Your Delegation:</label>
-  <div class="col-md-6">
-    <input type="number" class="mt-2" id="userStake">
-  </div>
-  <div class="col-md-3 var-value col-form-label">
-    <div class="form-group row">
-      <div class="col-md-9">
-        <input type="number" class="form-control" id="userStakeVal">
-      </div>
-      <label for="userStakeVal" class="col-md-3 col-form-label var-label">eGLD</label>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <h2 class="text-center mt-2 mb-4">Agency Variables</h2>
-  </div>
-</div>
-<div class="form-group row text-center">
-  <label for="agencyBaseStake" class="col-md-2 col-form-label var-label-md">Base Stake (eGLD):</label>
-  <div class="col-md-2">
-    <input type="number" class="form-control apy-variable" id="agencyBaseStake" value="200000">
-  </div>
-  <label for="agencyTopupStake" class="col-md-2 col-form-label var-label-md">TopUp (eGLD):</label>
-  <div class="col-md-2">
-    <input type="number" class="form-control apy-variable" id="agencyTopupStake" value="0">
-  </div>
-  <label for="agencyFee" class="col-md-2 col-form-label var-label-md">Fee (%):</label>
-  <div class="col-md-2">
-    <input type="number" class="form-control apy-variable" id="agencyFee" value="15.00">
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <h2 class="text-center mt-2 mb-4">Results</h2>
-  </div>
-</div>
-<div class="row justify-content-center">
-  <div class="col-auto text-center">
-    <div class="card mb-3 arc">
-      <div class="card-header">APY</div>
-      <div class="card-body">
-        <h2 class="card-title" id="delegator-apy"></h2>
-      </div>
-    </div>
-  </div>
-  <div class="col-auto text-center">
-    <div class="card mb-3 arc wide">
-      <div class="card-header">eGLD Rewards</div>
-      <div class="card-body">
-        <div class="row font-weight-bold">
-          <div class="col-3">Year</div>
-          <div class="col-3">Month</div>
-          <div class="col-3">Week</div>
-          <div class="col-3">Day</div>
-        </div>
-        <div class="row">
-          <div class="col-3 p-0"><span id="yearly-rewards"></span></div>
-          <div class="col-3 p-0"><span id="monthly-rewards"></span></div>
-          <div class="col-3 p-0"><span id="weekly-rewards"></span></div>
-          <div class="col-3 p-0"><span id="daily-rewards"></span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-*/}

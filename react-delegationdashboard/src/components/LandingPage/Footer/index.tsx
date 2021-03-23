@@ -1,8 +1,6 @@
 import { lazy, Fragment } from 'react';
 import { Row, Col } from 'antd';
 
-import { Fade } from 'react-awesome-reveal';
-
 import * as S from './styles';
 
 const SvgIcon = lazy(() => import('../../../common/SvgIcon'));
@@ -53,7 +51,6 @@ const Footer = () => {
 
   return (
     <Fragment>
-      <Fade direction='down'>
         <S.Extra>
           <Container>
             <Row
@@ -106,7 +103,6 @@ const Footer = () => {
             </Row>
           </Container>
         </S.Extra>
-      </Fade>
     </Fragment>
   );
 };
