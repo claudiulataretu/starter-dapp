@@ -11,12 +11,14 @@ const Container = lazy(() => import('../../../common/Container'));
 interface SocialLinkType {
   href?: string;
   src?: string;
+  flag?: string;
 }
 
 const Footer = () => {
 
   const SocialLink = ({ href, src }: SocialLinkType) => {
     return (
+      <div>
       <a
         href={href}
         target="_blank"
@@ -24,10 +26,30 @@ const Footer = () => {
         key={src}
         aria-label={src}
       >
-        <SvgIcon src={src} width="25px" height="25px" />
+        <SvgIcon src={src} width="35px" height="35px" />
       </a>
+      </div>
     );
   };
+
+  const SocialFlagsLink = ({ href, src, flag }: SocialLinkType) => {
+    return (
+      <div style={{display: 'inline-flex'}}>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        key={src}
+        aria-label={src}
+      >
+        <SvgIcon src={src} width="35px" height="35px" />
+      </a>
+      /
+      <SvgIcon src={flag} width="15px" height="15px" />
+      </div>
+    );
+  };
+
 
   return (
     <Fragment>
@@ -39,6 +61,7 @@ const Footer = () => {
               align="middle"
               style={{ paddingTop: '1.5rem', display:'flex' }}
             >
+              <Col>
               <S.NavLink to="/">
                 <S.LogoContainer>
                   <SvgIcon
@@ -49,10 +72,13 @@ const Footer = () => {
                   />
                 </S.LogoContainer>
               </S.NavLink>
+              </Col>
+              <Col>
               <S.FooterContainer>
-                <SocialLink
+                <SocialFlagsLink
                   href="https://t.me/mgstaking"
                   src="telegram.svg"
+                  flag="romania.svg"
                 />
                 <SocialLink
                   href="https://twitter.com/mgstaking"
@@ -62,15 +88,21 @@ const Footer = () => {
                   href="https://www.linkedin.com/company/mgstaking/"
                   src="linkedin.svg"
                 />
-                <SocialLink
+                <SocialFlagsLink
                   href="https://t.me/mgstakingInt"
                   src="telegram.svg"
+                  flag="english.svg"
                 />
                 <SocialLink
                   href="https://www.facebook.com/mgstaking"
                   src="facebook.svg"
                 />
+                <SocialLink
+                  href="https://www.youtube.com/channel/UCMsPQUxksrQK5izXYOaHfQA"
+                  src="youtube.svg"
+                />
               </S.FooterContainer>
+              </Col>
             </Row>
           </Container>
         </S.Extra>
