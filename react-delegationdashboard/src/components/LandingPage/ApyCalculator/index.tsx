@@ -122,7 +122,7 @@ const ApyCalculator = () => {
                 <Slider
                   min={1}
                   max={10000}
-                  step={10}
+                  step={1}
                   value={userStake}
                   tipFormatter={(value?: number) => `${(value || 8000000).toLocaleString('en-US')}`}
                   onChange={(value: number) => setUserStake(value)} />

@@ -10,7 +10,7 @@ export const LeftContentBlock = styled.section`
   }
 `;
 
-export const Content = styled.p`
+export const Content = styled.div`
   margin: 1.5rem 0 2rem 0;
 `;
 

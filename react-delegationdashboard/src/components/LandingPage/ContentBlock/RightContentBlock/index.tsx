@@ -1,8 +1,10 @@
+import { lazy } from 'react';
+
 import { Row, Col } from 'antd';
 import { Slide } from 'react-awesome-reveal';
 
-import SvgIcon from '../../../../common/SvgIcon';
-import Button from '../../../../common/Button';
+const SvgIcon = lazy(() => import('../../../../common/SvgIcon'));
+const Button = lazy(() => import('../../../../common/Button'));
 
 import { ButtonDetails } from '../../../../helpers/types';
 
@@ -17,12 +19,6 @@ interface RightContentBlockType {
 }
 
 const RightBlock = ({ title, content, button, icon, id }: RightContentBlockType) => {
-  const scrollTo = (id: string) => {
-    const element = document.getElementById(id);
-    element?.scrollIntoView({
-      behavior: 'smooth',
-    });
-  };
   return (
     <S.RightBlockContainer>
       <Row justify='space-between' align="middle" id={id} style={{display:'flex'}}>
