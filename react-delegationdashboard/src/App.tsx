@@ -10,7 +10,7 @@ function App() {
       <ContextProvider>
         <Switch>
           {routes.map((route, i) => (
-            (route.page === 'home') ?
+            (route.page === 'homea') ?
             <Route path={route.path} key={route.path + i} component={route.component} exact={true}></Route>
             : <Route path={route.path} key={route.path + i} component={route.component} exact={true}>
               <Layout page={route.page}>
