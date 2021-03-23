@@ -29,7 +29,7 @@ const LandingPage = () => {
         title={IntroContent.title}
         content={IntroContent.text}
         button={IntroContent.button}
-        icon="startup.svg"
+        icon={'startup.svg'}
         id="intro"
       />
       <MiddleBlock
