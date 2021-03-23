@@ -23,7 +23,7 @@
     "moment": "^2.29.1",
     "node-sass": "^4.0.0",
     "react": "^16.13.1",
-    "react-awesome-reveal": "^3.7.1",
+    "react-awesome-reveal": "3.4.0",
     "react-bootstrap": "1.4.3",
     "react-dom": "^16.13.1",
     "react-dropzone": "^11.3.1",

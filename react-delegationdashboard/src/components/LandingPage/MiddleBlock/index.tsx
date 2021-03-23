@@ -33,9 +33,7 @@ const MiddleBlock = ({ title, content, button, id }: MiddleBlockType) => {
               {content &&
                 content.map((item, id) => {
                   return (
-                    <p>
-                      {item}
-                    </p>
+                    <span key={id}>{item}</span>
                   );
                 })}
               </S.Content>

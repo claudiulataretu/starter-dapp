@@ -1,9 +1,11 @@
+import { lazy } from 'react';
 import { Row, Col } from 'antd';
 import { Slide } from 'react-awesome-reveal';
 import { SectionDetails } from '../../../../helpers/types';
 
-import SvgIcon from '../../../../common/SvgIcon';
-import Button from '../../../../common/Button';
+
+const SvgIcon = lazy(() => import('../../../../common/SvgIcon'));
+const Button = lazy(() => import('../../../../common/Button'));
 import { ButtonDetails } from '../../../../helpers/types';
 
 import * as S from './styles';
@@ -40,7 +42,7 @@ const LeftContentBlock = ({ icon, title, content, section, button, id }: LeftCon
                   {content &&
                   content.map((item, id) => {
                     return (
-                      <p>
+                      <p key={id}>
                         {item}
                       </p>
                     );
@@ -49,11 +51,11 @@ const LeftContentBlock = ({ icon, title, content, section, button, id }: LeftCon
                   {section &&
                     section.map((item, id) => {
                       return (
-                        <Row justify="start" style={{display:'flex'}}>
-                        <Col span={2}>
-                          <SvgIcon src={item.icon} width="20px" height="20px" />
-                        </Col>
-                        <Col span={22}>{item.content}</Col>
+                        <Row justify="start" style={{display:'flex'}} key={id}>
+                          <Col span={2}>
+                            <SvgIcon src={item.icon} width="20px" height="20px" />
+                          </Col>
+                          <Col span={22}><p style={{margin: 0}}>{item.content}</p></Col>
                         </Row>
                       );
                     })}
