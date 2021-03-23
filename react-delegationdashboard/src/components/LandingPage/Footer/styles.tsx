@@ -124,14 +124,13 @@ export const FooterContainer = styled.div`
 
   div {
     cursor: pointer;
-    margin-right: 15px;
-    width: 25px;
-    height: 25px;
+    margin-right: 35px;
 
     &:hover {
       fill: rgb(255, 130, 92);
     }
   }
+
 `;
 
 export const Hidden = styled.div`
