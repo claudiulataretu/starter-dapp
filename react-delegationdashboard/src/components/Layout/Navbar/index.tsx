@@ -16,14 +16,14 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar px-4 py-3 flex-nowrap">
-      <div className="container-fluid flex-nowrap">
-        <div className="d-flex align-items-center mr-3">
+    <div className="navbar px-4 py-3">
+      <div className="container-fluid flex-wrap px-0">
+        <div className="d-flex align-items-center">
           <img className="mr-3" src={logo} alt="logo" width='30px' height="34px" />
-          <span className="navbar-brand text-nowrap mb-0 p-0">MGStaking Delegation Manager</span>
+          <span className="navbar-brand text-nowrap m-0 p-0">MGStaking Delegation Manager</span>
         </div>
         <div className="d-flex align-items-center">
-          <span className="navbar-brand text-nowrap mb-0 p-0">{network.name}</span>
+          <span className="navbar-brand text-nowrap mb-0 p-0"><strong>{`<${network.name}>`}</strong></span>
         </div>
         {loggedIn && (
           <div className="d-flex align-items-center" style={{ minWidth: 0 }}>
