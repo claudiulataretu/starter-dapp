@@ -5,6 +5,8 @@ import { useContext, useDispatch } from 'context';
 
 import logo from '../../../assets/images/lock-logo.png';
 
+import { network } from '../../../config';
+
 const Navbar = () => {
   const { loggedIn, dapp, address, account } = useContext();
   const dispatch = useDispatch();
@@ -17,8 +19,11 @@ const Navbar = () => {
     <div className="navbar px-4 py-3 flex-nowrap">
       <div className="container-fluid flex-nowrap">
         <div className="d-flex align-items-center mr-3">
-        <img  src={logo}  alt="logo" width='30px' height="34px" style={{marginRight: '5px'}} />
-          <span className="h4 text-nowrap mb-0 p-0">MGStaking Delegation Manager</span>
+          <img className="mr-3" src={logo} alt="logo" width='30px' height="34px" />
+          <span className="navbar-brand text-nowrap mb-0 p-0">MGStaking Delegation Manager</span>
+        </div>
+        <div className="d-flex align-items-center">
+          <span className="navbar-brand text-nowrap mb-0 p-0">{network.name}</span>
         </div>
         {loggedIn && (
           <div className="d-flex align-items-center" style={{ minWidth: 0 }}>
