@@ -1,17 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Address } from '@elrondnetwork/erdjs/out';
-import { useContext } from 'context';
+import { useContext, useDispatch } from 'context';
 import SetAgencyMetaDataModal from './SetAgencyMetaDataModal';
+import { getItem } from 'storage/session';
 
 const Header = () => {
   const { pathname } = useLocation();
-  const { address, delegationContract, contractOverview } = useContext();
+  const dispatch = useDispatch();
+  const { address, delegationContract, contractOverview, ledgerAccount } = useContext();
 
-  const isAdmin = () => {
+  const isOwner = () => {
     let loginAddress = new Address(address).hex();
     return loginAddress.localeCompare(contractOverview.ownerAddress) === 0;
   };
+
+  const isOwnerPath = () => {
+    let currentURL = location.pathname;
+    return currentURL.includes('owner') === true;
+  };
+
+  const fetchLedger = () => {
+    if (getItem('ledgerLogin') && !ledgerAccount) {
+      const ledgerLogin = getItem('ledgerLogin');
+      dispatch({
+        type: 'setLedgerAccount',
+        ledgerAccount: {
+          index: ledgerLogin.index,
+          address: address,
+        },
+      });
+    }
+  };
+  useEffect(fetchLedger, []);
 
   return (
     <div className="header card-header d-flex align-items-center border-0 justify-content-between px-spacer">
@@ -20,7 +41,7 @@ const Header = () => {
         <span className="text-truncate">{delegationContract}</span>
       </div>
       <div className="d-flex justify-content-center align-items-center justify-content-between">
-        {isAdmin() && pathname !== '/owner' ? (
+        {isOwner() && !isOwnerPath() ? (
           <Link to="/owner" className="btn btn-primary btn-sm">
             Admin
           </Link>
@@ -30,9 +51,7 @@ const Header = () => {
             Dashboard
           </Link>
         ) : null}
-        {isAdmin() && pathname == '/owner' ? (
-          <SetAgencyMetaDataModal />
-        ) : null}
+        {isOwner() && isOwnerPath() ? <SetAgencyMetaDataModal /> : null}
       </div>
     </div>
   );

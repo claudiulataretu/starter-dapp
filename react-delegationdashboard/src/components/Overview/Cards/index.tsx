@@ -33,9 +33,14 @@ const Views = () => {
     return percentage ? percentage.toFixed(2) : '...';
   };
 
-  const isAdmin = () => {
+  const isOwner = () => {
     let loginAddress = new Address(address).hex();
     return loginAddress.localeCompare(contractOverview.ownerAddress) === 0;
+  };
+
+  const isOwnerPath = () => {
+    let currentURL = location.pathname;
+    return currentURL.includes('owner') === true;
   };
 
   const getNetworkStake = () => {
@@ -61,7 +66,6 @@ const Views = () => {
           input: totalActiveStake,
           denomination,
           decimals,
-          showLastNonZeroDecimal: false,
         })}
         valueUnit={egldLabel}
         color="orange"
@@ -71,13 +75,11 @@ const Views = () => {
             input: totalActiveStake,
             denomination,
             decimals,
-            showLastNonZeroDecimal: false,
           }),
           denominate({
             input: networkStake.TotalStaked.toFixed(),
             denomination,
             decimals,
-            showLastNonZeroDecimal: false,
           })
         )}% of total stake`}
       />
@@ -109,9 +111,9 @@ const Views = () => {
         color="red"
         svg="service.svg"
       >
-        {location.pathname === '/owner' && <SetPercentageFeeAction />}
+        {isOwnerPath() && <SetPercentageFeeAction />}
       </StatCard>
-      {isAdmin() && location.pathname === '/owner' ? (
+      {isOwner() && isOwnerPath() ? (
         <StatCard
           title="Delegation Cap"
           value={
@@ -119,7 +121,6 @@ const Views = () => {
               decimals,
               denomination,
               input: contractOverview.maxDelegationCap,
-              showLastNonZeroDecimal: false,
             }) || ''
           }
           valueUnit={egldLabel}
@@ -130,13 +131,11 @@ const Views = () => {
               input: totalActiveStake,
               denomination,
               decimals,
-              showLastNonZeroDecimal: false,
             }),
             denominate({
               decimals,
               denomination,
               input: contractOverview.maxDelegationCap,
-              showLastNonZeroDecimal: false,
             })
           )}% filled`}
         >
@@ -147,13 +146,11 @@ const Views = () => {
           decimals,
           denomination,
           input: contractOverview.maxDelegationCap,
-          showLastNonZeroDecimal: false,
         }) !== '0' &&
         denominate({
           decimals,
           denomination,
           input: contractOverview.maxDelegationCap,
-          showLastNonZeroDecimal: false,
         }) !== '' && (
           <StatCard
             title="Delegation Cap"
@@ -162,7 +159,6 @@ const Views = () => {
                 decimals,
                 denomination,
                 input: contractOverview.maxDelegationCap,
-                showLastNonZeroDecimal: false,
               }) || ''
             }
             valueUnit={egldLabel}
@@ -173,20 +169,18 @@ const Views = () => {
                 input: totalActiveStake,
                 denomination,
                 decimals,
-                showLastNonZeroDecimal: false,
               }),
               denominate({
                 decimals,
                 denomination,
                 input: contractOverview.maxDelegationCap,
-                showLastNonZeroDecimal: false,
               })
             )}% filled`}
           ></StatCard>
         )
       )}
 
-      {isAdmin() && location.pathname === '/owner' && (
+      {isOwner() && isOwnerPath() && (
         <StatCard
           title="Automatic activation"
           value={contractOverview.automaticActivation === 'true' ? 'ON' : 'OFF'}
@@ -196,7 +190,7 @@ const Views = () => {
           <AutomaticActivationAction automaticFlag={contractOverview.automaticActivation} />
         </StatCard>
       )}
-      {isAdmin() && location.pathname === '/owner' && (
+      {isOwner() && isOwnerPath() && (
         <StatCard
           title="ReDelegate Cap"
           value={contractOverview.reDelegationCap === 'true' ? 'ON' : 'OFF'}
