@@ -16,7 +16,7 @@ RUN apk update && apk add --update --no-cache alpine-sdk libusb-dev musl-dev lin
 RUN npm ci
 
 COPY . ./
-RUN npm run build-testnet
+RUN npm run build-mainnet
 
 FROM nginx:latest
 COPY --from=build /app/build /usr/share/nginx/html
