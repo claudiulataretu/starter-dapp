@@ -3,7 +3,7 @@ import { decimals, denomination } from 'config';
 import { useContext } from 'context';
 import denominate from 'components/Denominate/formatters';
 import StatCard from 'components/StatCard';
-import { Address, NetworkStake } from '@elrondnetwork/erdjs/out';
+import { Address, NetworkStake } from '@elrondnetwork/erdjs';
 import { useState } from 'react';
 
 import SetPercentageFeeAction from './SetPercentageFeeAction';
@@ -39,7 +39,7 @@ const Views = () => {
   };
 
   const isOwnerPath = () => {
-    let currentURL = location.pathname;
+    let currentURL = window.location.pathname;
     return currentURL.includes('owner') === true;
   };
 
@@ -54,9 +54,12 @@ const Views = () => {
       });
   };
 
-  React.useEffect(() => {
-    getNetworkStake();
-  }, []);
+  React.useEffect(
+    () => {
+      getNetworkStake();
+    },
+    /* eslint-disable react-hooks/exhaustive-deps */ []
+  );
 
   return (
     <div className="cards d-flex flex-wrap mr-spacer">
